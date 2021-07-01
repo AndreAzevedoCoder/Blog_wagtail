@@ -27,14 +27,23 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
+        <header>
+            <ul>
+                <li>Inicio</li>
+                <li>Postagens</li>
+                <li>Logout</li>
+            </ul>
+        </header>
 
-        {% block content %}{% endblock %}
-
+        
+        
+        <main>
+            {% block content %}{% endblock %}
+            {% block extra_js %}
+                {# Override this in templates to add extra javascript #}
+            {% endblock %}
+        </main>
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
-
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
     </body>
 </html>

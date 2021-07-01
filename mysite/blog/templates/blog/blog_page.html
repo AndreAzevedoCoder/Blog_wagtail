@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template-blogpage{% endblock %}
+<!-- 
+{% block body_class %}template-blogpage{% endblock %} -->
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
+    <!-- <h1>{{ page.title }}</h1>
     <p class="meta">{{ page.date }}</p>
     {% with categories=page.categories.all %}
     {% if categories %}
@@ -19,9 +19,9 @@
             {% endfor %}
         </ul>
     {% endif %}
-{% endwith %}
+{% endwith %} -->
 
-    <div class="intro">{{ page.intro }}</div>
+    <!-- <div class="intro">{{ page.intro }}</div>
 
     {{ page.body|richtext }}
 
@@ -32,29 +32,31 @@
         </div>
     {% endfor %}
 
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p> -->
 
-    {% for post in blogpages %}
+{% for post in blogpages %}
+    xo verifica um bagl
     {% with post=post.specific %}
-        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        <div class="post">
+            <p class="postTitle"><a href="{% pageurl post %}">{{ post.title }}</a></p>
 
-        {% with post.main_image as main_image %}
-            {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
-        {% endwith %}
+            {% with post.main_image as main_image %}
+                {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
+            {% endwith %}
 
-        <p>{{ post.intro }}</p>
-        {{ post.body|richtext }}
+            <p>{{ post.intro }}</p>
+            {{ post.body|richtext }}
+        </div>
     {% endwith %}
+{% endfor %}
 
-    {% endfor %}
-
-    {% if page.tags.all.count %}
+<!-- {% if page.tags.all.count %}
     <div class="tags">
         <h3>Tags</h3>
         {% for tag in page.tags.all %}
             <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
         {% endfor %}
     </div>
-    {% endif %}
+{% endif %} -->
 
 {% endblock %}
